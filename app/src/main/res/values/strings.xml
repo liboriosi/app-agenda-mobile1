@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Gerenciador-Contatos</string>
+    <string name="hello_blank_fragment">Hello Blank Fragment</string>
+    <string name="lista_de_contatos">Lista De Contatos</string>
+    <string name="nome_completo">Nome Completo</string>
+    <string name="telefone">Telefone</string>
+    <string name="adicionar_n_mero">Adicionar Número</string>
+    <string name="adicionar_contato">Adicionar Contato</string>
+    <string name="telefones">Telefones</string>
+    <string name="salvar_contato">Salvar Contato</string>
+</resources>
