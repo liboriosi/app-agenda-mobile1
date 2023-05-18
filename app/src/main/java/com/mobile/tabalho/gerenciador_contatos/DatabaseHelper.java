@@ -102,12 +102,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteNumero(long numeroId) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_NUMEROS, COL_NUMERO_ID + " = ?", new String[]{String.valueOf(numeroId)});
-        db.close();
-    }
-
     public List<Contato> getAllContatos() {
         List<Contato> contatos = new ArrayList<>();
 

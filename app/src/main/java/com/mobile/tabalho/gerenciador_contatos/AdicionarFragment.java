@@ -16,12 +16,12 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AdicionarFragment extends Fragment {
 
     private LinearLayout phoneContainer;
-    private int phoneCount = 1;
 
     private DatabaseHelper databaseHelper;
 
@@ -44,8 +44,11 @@ public class AdicionarFragment extends Fragment {
 
         addPhoneButton.setOnClickListener(v -> addPhoneField());
 
-        Button buttonAdicionar = view.findViewById(R.id.buttonAdicionar);
+        Button buttonAdicionar = view.findViewById(R.id.salvarContatoButton);
         buttonAdicionar.setOnClickListener(v -> salvarContato());
+
+        ImageButton backButton = view.findViewById(R.id.backButton);
+        backButton.setOnClickListener(v -> requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MainFragment()).commit());
 
         return view;
     }
@@ -58,10 +61,7 @@ public class AdicionarFragment extends Fragment {
 
         removePhoneButton.setOnClickListener(v -> removePhoneField(phoneFieldView));
 
-        List<String> options = new ArrayList<>();
-        options.add("Celular");
-        options.add("Comercial");
-        options.add("Residencial");
+        List<String> options = new ArrayList<>(Arrays.asList("Celular", "Comercial", "Residencial"));
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, options);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -92,11 +92,11 @@ public class AdicionarFragment extends Fragment {
     }
 
     private void salvarContato() {
-        EditText fullNameEditText = getView().findViewById(R.id.nomeCompletoEditText);
-        String nome = fullNameEditText.getText().toString();
+        EditText nomeCompletoEditText = requireView().findViewById(R.id.nomeCompletoEditText);
+        String nomeCompleto = nomeCompletoEditText.getText().toString();
 
-        if (nome.trim().isEmpty()) {
-            Toast.makeText(getContext(), "Digite um nome válido", Toast.LENGTH_SHORT).show();
+        if (nomeCompleto.trim().isEmpty()) {
+            Toast.makeText(getContext(), "Por favor, insira o nome completo", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -122,13 +122,13 @@ public class AdicionarFragment extends Fragment {
             return;
         }
 
-        Contato contato = new Contato(nome, numeros);
+        Contato contato = new Contato(nomeCompleto, numeros);
 
         long contatoId = databaseHelper.createContato(contato);
 
         if (contatoId != -1) {
             Toast.makeText(getContext(), "Contato salvo com sucesso", Toast.LENGTH_SHORT).show();
-            fullNameEditText.setText("");
+            nomeCompletoEditText.setText("");
             phoneContainer.removeAllViews();
             addPhoneField();
 

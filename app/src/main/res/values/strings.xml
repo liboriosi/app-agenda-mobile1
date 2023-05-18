@@ -4,8 +4,11 @@
     <string name="lista_de_contatos">Lista De Contatos</string>
     <string name="nome_completo">Nome Completo</string>
     <string name="telefone">Telefone</string>
-    <string name="adicionar_n_mero">Adicionar Número</string>
+    <string name="adicionar_numero">Adicionar Número</string>
     <string name="adicionar_contato">Adicionar Contato</string>
     <string name="telefones">Telefones</string>
     <string name="salvar_contato">Salvar Contato</string>
+    <string name="excluir_contato">Excluir Contato</string>
+    <string name="atualizar_contato">Atualizar Contato</string>
+    <string name="voltar">Voltar</string>
 </resources>

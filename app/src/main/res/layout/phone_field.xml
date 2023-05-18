@@ -35,7 +35,7 @@
             android:id="@+id/removePhoneButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/adicionar_n_mero"
+            android:contentDescription="@string/adicionar_numero"
             android:src="@drawable/ic_baseline_remove_24"
             android:visibility="gone"
             app:layout_constraintBaseline_toBaselineOf="@id/phoneNumberEditText"
