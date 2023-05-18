@@ -14,10 +14,15 @@ import java.util.List;
 public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.ContatoViewHolder> {
 
     private List<Contato> contatos = new ArrayList<>();
+    private OnItemClickListener listener;
 
     public void setContatos(List<Contato> contatos) {
         this.contatos = contatos;
-        notifyItemRangeChanged(0, contatos.size());
+        notifyDataSetChanged();
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -31,6 +36,12 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.ContatoV
     public void onBindViewHolder(@NonNull ContatoViewHolder holder, int position) {
         Contato contato = contatos.get(position);
         holder.tvNome.setText(contato.getNome());
+
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(contato);
+            }
+        });
     }
 
     @Override
@@ -45,6 +56,10 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.ContatoV
             super(itemView);
             tvNome = itemView.findViewById(R.id.tvListContatoNome);
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Contato contato);
     }
 }
 

@@ -1,12 +1,21 @@
 package com.mobile.tabalho.gerenciador_contatos;
 
 public class Numero {
+    private long id;
     private String numero;
     private String tipo;
 
     public Numero(String numero, String tipo) {
         this.numero = numero;
         this.tipo = tipo;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNumero() {

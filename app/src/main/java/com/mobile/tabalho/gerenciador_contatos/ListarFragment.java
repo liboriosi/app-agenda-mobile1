@@ -9,10 +9,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.Comparator;
 import java.util.List;
 
-public class ListarFragment extends Fragment {
+public class ListarFragment extends Fragment implements ContatoAdapter.OnItemClickListener {
 
     private ContatoAdapter contatoAdapter;
 
@@ -34,6 +33,7 @@ public class ListarFragment extends Fragment {
 
         contatoAdapter = new ContatoAdapter();
         recyclerViewContatos.setAdapter(contatoAdapter);
+        contatoAdapter.setOnItemClickListener(this);
 
         carregarContatos();
 
@@ -46,14 +46,22 @@ public class ListarFragment extends Fragment {
             contatos = databaseHelper.getAllContatos();
         }
 
-        contatos.sort(new Comparator<Contato>() {
-            @Override
-            public int compare(Contato contato1, Contato contato2) {
-                return contato1.getNome().compareToIgnoreCase(contato2.getNome());
-            }
-        });
+        contatos.sort((contato1, contato2) -> contato1.getNome().compareToIgnoreCase(contato2.getNome()));
 
         contatoAdapter.setContatos(contatos);
+    }
+
+    @Override
+    public void onItemClick(Contato contato) {
+        Fragment editarFragment = new EditarFragment();
+        Bundle bundle = new Bundle();
+        bundle.putLong("contatoId", contato.getId());
+        editarFragment.setArguments(bundle);
+
+        requireActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, editarFragment)
+                .commit();
     }
 
     @Override
