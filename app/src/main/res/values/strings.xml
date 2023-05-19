@@ -11,4 +11,5 @@
     <string name="excluir_contato">Excluir Contato</string>
     <string name="atualizar_contato">Atualizar Contato</string>
     <string name="voltar">Voltar</string>
+    <string name="contatos">Contatos</string>
 </resources>

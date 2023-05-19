@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 
@@ -26,7 +26,7 @@ public class MainFragment extends Fragment {
             requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameContatos, new ListarFragment()).commit();
         }
 
-        Button btnAdicionar = v.findViewById(R.id.buttonAdicionar);
+        ImageButton btnAdicionar = v.findViewById(R.id.buttonAdicionar);
         btnAdicionar.setOnClickListener(v1 -> requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new AdicionarFragment()).commit());
 
         return v;

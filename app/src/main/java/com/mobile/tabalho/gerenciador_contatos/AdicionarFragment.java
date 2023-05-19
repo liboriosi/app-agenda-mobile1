@@ -42,7 +42,9 @@ public class AdicionarFragment extends Fragment {
         phoneContainer = view.findViewById(R.id.phoneContainer);
         ImageButton addPhoneButton = view.findViewById(R.id.addPhoneButton);
 
-        addPhoneButton.setOnClickListener(v -> addPhoneField());
+        adicionarCampoTelefone();
+
+        addPhoneButton.setOnClickListener(v -> adicionarCampoTelefone());
 
         Button buttonAdicionar = view.findViewById(R.id.salvarContatoButton);
         buttonAdicionar.setOnClickListener(v -> salvarContato());
@@ -53,13 +55,13 @@ public class AdicionarFragment extends Fragment {
         return view;
     }
 
-    private void addPhoneField() {
+    private void adicionarCampoTelefone() {
         @SuppressLint("InflateParams") View phoneFieldView = LayoutInflater.from(getContext()).inflate(R.layout.phone_field, null);
 
         Spinner phoneTypeSpinner = phoneFieldView.findViewById(R.id.phoneTypeSpinner);
         ImageButton removePhoneButton = phoneFieldView.findViewById(R.id.removePhoneButton);
 
-        removePhoneButton.setOnClickListener(v -> removePhoneField(phoneFieldView));
+        removePhoneButton.setOnClickListener(v -> removerCampoTelefone(phoneFieldView));
 
         List<String> options = new ArrayList<>(Arrays.asList("Celular", "Comercial", "Residencial"));
 
@@ -78,7 +80,7 @@ public class AdicionarFragment extends Fragment {
         }
     }
 
-    private void removePhoneField(View phoneFieldView) {
+    private void removerCampoTelefone(View phoneFieldView) {
         if (phoneContainer.getChildCount() > 0) {
             phoneContainer.removeView(phoneFieldView);
         }
@@ -130,7 +132,7 @@ public class AdicionarFragment extends Fragment {
             Toast.makeText(getContext(), "Contato salvo com sucesso", Toast.LENGTH_SHORT).show();
             nomeCompletoEditText.setText("");
             phoneContainer.removeAllViews();
-            addPhoneField();
+            adicionarCampoTelefone();
 
             requireActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, new MainFragment())

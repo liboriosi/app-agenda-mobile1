@@ -31,13 +31,13 @@
             android:autofillHints="name"
             android:hint="@string/nome_completo"
             android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintBottom_toTopOf="@+id/line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/backButton" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/line"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/telefones"
@@ -54,7 +54,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/line" />
 
         <ImageButton
             android:id="@+id/addPhoneButton"

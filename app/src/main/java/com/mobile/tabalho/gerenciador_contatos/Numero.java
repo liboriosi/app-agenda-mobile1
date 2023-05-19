@@ -2,8 +2,8 @@ package com.mobile.tabalho.gerenciador_contatos;
 
 public class Numero {
     private long id;
-    private String numero;
-    private String tipo;
+    private final String numero;
+    private final String tipo;
 
     public Numero(String numero, String tipo) {
         this.numero = numero;
@@ -22,16 +22,8 @@ public class Numero {
         return numero;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
     public String getTipo() {
         return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 }
 

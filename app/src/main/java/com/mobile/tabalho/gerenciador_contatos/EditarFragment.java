@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
@@ -78,7 +77,7 @@ public class EditarFragment extends Fragment {
         databaseHelper.close();
     }
 
-    private void adicionarCampoTelefone(@Nullable Numero numero) {
+    private void adicionarCampoTelefone(Numero numero) {
         View phoneFieldView = LayoutInflater.from(getContext()).inflate(R.layout.phone_field, phoneContainer, false);
         EditText phoneNumberEditText = phoneFieldView.findViewById(R.id.phoneNumberEditText);
         Spinner phoneTypeSpinner = phoneFieldView.findViewById(R.id.phoneTypeSpinner);
@@ -107,7 +106,7 @@ public class EditarFragment extends Fragment {
         }
     }
 
-    private void removerCampoTelefone(View phoneFieldView, @Nullable Numero numero) {
+    private void removerCampoTelefone(View phoneFieldView, Numero numero) {
         phoneContainer.removeView(phoneFieldView);
         if (numero != null) {
             numeros.remove(numero);
