@@ -19,7 +19,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class EditarFragment extends Fragment {
-    List<String> options = new ArrayList<>(Arrays.asList("Celular", "Comercial", "Residencial"));
     private EditText nomeCompletoEditText;
     private LinearLayout phoneContainer;
     private Contato contato;
@@ -80,11 +79,13 @@ public class EditarFragment extends Fragment {
     private void adicionarCampoTelefone(Numero numero) {
         View phoneFieldView = LayoutInflater.from(getContext()).inflate(R.layout.phone_field, phoneContainer, false);
         EditText phoneNumberEditText = phoneFieldView.findViewById(R.id.phoneNumberEditText);
+        phoneNumberEditText.addTextChangedListener(new TelefoneMask(phoneNumberEditText));
         Spinner phoneTypeSpinner = phoneFieldView.findViewById(R.id.phoneTypeSpinner);
         ImageButton removePhoneButton = phoneFieldView.findViewById(R.id.removePhoneButton);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, options);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        List<String> options = new ArrayList<>(Arrays.asList("Celular", "Comercial", "Residencial"));
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item, options);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         phoneTypeSpinner.setAdapter(adapter);
 
         if (numero != null) {
@@ -93,7 +94,7 @@ public class EditarFragment extends Fragment {
             removePhoneButton.setVisibility(View.VISIBLE);
             removePhoneButton.setOnClickListener(v -> removerCampoTelefone(phoneFieldView, numero));
         } else {
-            removePhoneButton.setVisibility(View.GONE);
+            removePhoneButton.setOnClickListener(v -> removerCampoTelefone(phoneFieldView, null));
         }
 
         phoneContainer.addView(phoneFieldView);
@@ -107,7 +108,9 @@ public class EditarFragment extends Fragment {
     }
 
     private void removerCampoTelefone(View phoneFieldView, Numero numero) {
-        phoneContainer.removeView(phoneFieldView);
+        if (phoneContainer.getChildCount() > 0) {
+            phoneContainer.removeView(phoneFieldView);
+        }
         if (numero != null) {
             numeros.remove(numero);
         }

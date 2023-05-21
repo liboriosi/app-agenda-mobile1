@@ -1,6 +1,5 @@
 package com.mobile.tabalho.gerenciador_contatos;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,6 @@ import java.util.List;
 public class AdicionarFragment extends Fragment {
 
     private LinearLayout phoneContainer;
-
     private DatabaseHelper databaseHelper;
 
     public AdicionarFragment() {
@@ -52,11 +50,18 @@ public class AdicionarFragment extends Fragment {
         ImageButton backButton = view.findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MainFragment()).commit());
 
+        int childCount = phoneContainer.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childView = phoneContainer.getChildAt(i);
+            EditText phoneNumberEditText = childView.findViewById(R.id.phoneNumberEditText);
+            phoneNumberEditText.addTextChangedListener(new TelefoneMask(phoneNumberEditText));
+        }
+
         return view;
     }
 
     private void adicionarCampoTelefone() {
-        @SuppressLint("InflateParams") View phoneFieldView = LayoutInflater.from(getContext()).inflate(R.layout.phone_field, null);
+        View phoneFieldView = LayoutInflater.from(getContext()).inflate(R.layout.phone_field, phoneContainer, false);
 
         Spinner phoneTypeSpinner = phoneFieldView.findViewById(R.id.phoneTypeSpinner);
         ImageButton removePhoneButton = phoneFieldView.findViewById(R.id.removePhoneButton);
@@ -64,10 +69,8 @@ public class AdicionarFragment extends Fragment {
         removePhoneButton.setOnClickListener(v -> removerCampoTelefone(phoneFieldView));
 
         List<String> options = new ArrayList<>(Arrays.asList("Celular", "Comercial", "Residencial"));
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, options);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item, options);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         phoneTypeSpinner.setAdapter(adapter);
 
         phoneContainer.addView(phoneFieldView);

@@ -15,36 +15,49 @@
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="348dp"
+            android:background="@android:color/transparent"
             android:contentDescription="@string/voltar"
             android:src="@drawable/ic_back_arrow_24"
+            app:tint="#FFFFFF"
             app:layout_constraintBottom_toTopOf="@+id/nomeCompletoEditText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="43dp"
+            android:src="@drawable/ic_person"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/backButton" />
+
         <EditText
             android:id="@+id/nomeCompletoEditText"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="15dp"
             android:layout_marginBottom="55dp"
             android:autofillHints="name"
+            android:background="@drawable/rounded_corner"
+            android:drawableTint="#FFFFFF"
             android:hint="@string/nome_completo"
             android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/line"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/backButton" />
-
-        <TextView
-            android:id="@+id/line"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/telefones"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#80FFFFFF"
             app:layout_constraintBottom_toTopOf="@+id/phoneContainer"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomeCompletoEditText" />
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/backButton" />
 
         <LinearLayout
             android:id="@+id/phoneContainer"
@@ -54,45 +67,52 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/line" />
+            app:layout_constraintTop_toBottomOf="@+id/nomeCompletoEditText" />
 
         <ImageButton
             android:id="@+id/addPhoneButton"
-            android:layout_width="wrap_content"
+            android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginStart="182dp"
-            android:layout_marginTop="106dp"
-            android:layout_marginEnd="182dp"
+            android:layout_marginTop="50dp"
             android:animateLayoutChanges="true"
+            android:backgroundTint="@android:color/transparent"
             android:contentDescription="@string/adicionar_numero"
             android:src="@drawable/ic_baseline_add_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phoneContainer" />
+            app:layout_constraintTop_toBottomOf="@+id/phoneContainer"
+            app:tint="#FFFFFF" />
 
         <Button
-            android:id="@+id/atualizarContatoButton"
-            android:layout_width="wrap_content"
+            android:id="@+id/excluirContatoButton"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="40dp"
             android:layout_marginBottom="50dp"
-            android:text="@string/atualizar_contato"
-            app:layout_constraintBottom_toBottomOf="@+id/excluirContatoButton"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@android:color/transparent"
+            android:text="@string/excluir_contato"
+            android:textColor="#FF0000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/atualizarContatoButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addPhoneButton" />
 
         <Button
-            android:id="@+id/excluirContatoButton"
-            android:layout_width="wrap_content"
+            android:id="@+id/atualizarContatoButton"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="30dp"
             android:layout_marginBottom="50dp"
-            android:text="@string/excluir_contato"
+            android:backgroundTint="@android:color/transparent"
+            android:text="@string/atualizar_contato"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/atualizarContatoButton" />
+            app:layout_constraintStart_toEndOf="@+id/excluirContatoButton"
+            app:layout_constraintTop_toBottomOf="@+id/addPhoneButton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
