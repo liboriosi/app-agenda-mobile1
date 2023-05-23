@@ -133,7 +133,7 @@ public class EditarFragment extends Fragment {
         }
 
         if (numerosAtualizados.isEmpty()) {
-            Toast.makeText(getContext(), "Por favor, insira pelo menos um número de telefone", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Por favor, insira um número de telefone válido", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -162,7 +162,7 @@ public class EditarFragment extends Fragment {
             String numero = phoneNumberEditText.getText().toString();
             String tipo = phoneTypeSpinner.getSelectedItem().toString();
 
-            if (!numero.isEmpty()) {
+            if (numero.length() >= 14) {
                 Numero numeroObj = new Numero(numero, tipo);
                 numerosAtualizados.add(numeroObj);
             }

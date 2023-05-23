@@ -116,14 +116,14 @@ public class AdicionarFragment extends Fragment {
             String tipo = phoneTypeSpinner.getSelectedItem().toString();
             String numero = phoneNumberEditText.getText().toString();
 
-            if (!numero.trim().isEmpty()) {
+            if (numero.length() >= 14) {
                 Numero numeroTelefone = new Numero(numero, tipo);
                 numeros.add(numeroTelefone);
             }
         }
 
         if (numeros.isEmpty()) {
-            Toast.makeText(getContext(), "Adicione pelo menos um número de telefone", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Por favor, insira um número de telefone válido", Toast.LENGTH_SHORT).show();
             return;
         }
 
